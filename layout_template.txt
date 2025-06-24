@@ -1,0 +1,142 @@
+use crate::layout_base::LayoutBase;
+
+pub struct LayoutTemplate {
+  layout_base: LayoutBase,
+}
+
+impl LayoutTemplate {
+
+  fn add_child(&mut self, child: Rc<RefCell<dyn ChildWindow>>,
+    args: LayoutArgs) -> Result<(), String> {
+      Err("Unsupported function: add_child")
+  }
+
+  /// Adds an inner layout
+  ///
+  /// If an error occurred, the returned Result contains a string explaining why it failed.
+  fn add_layout(&mut self, layout: Rc<RefCell<dyn Layout>>,
+    args: LayoutArgs) -> Result<(), String> {
+      Err("Unsupported function: add_child")
+  }
+
+  /// Removes all items from the layout
+  fn clear(&mut self) {}
+
+  /// The only layout that performs any actions in this method is the TabLayout
+  fn close_tab(&mut self, tab_uuid: Uuid) {}
+
+  /// Gets the child that contains the specified screen pixel location
+  fn get_child_at(&self, x: f64, y: f64) -> Option<Rc<RefCell<dyn ChildWindow>>> {
+    None
+  }
+
+  /// Gets the child window with the specified ID
+  fn get_child_with_id(&mut self, uuid: Uuid) -> Option<Rc<RefCell<dyn ChildWindow>>> {
+    None
+  }
+
+  /// Gets the child layout with the specified ID
+  fn get_layout_with_id(&self, uuid: Uuid) -> Option<Rc<RefCell<dyn Layout>>> {
+    None
+  }
+
+  /// Gets the list of all descendent layouts of the specified type
+  fn get_layouts_of_type(&self, layout_type: LayoutType) -> Vec<Rc<RefCell<dyn Layout>>> {
+    Vec::new()
+  }
+
+  /// Gets the type of layout
+  fn get_type(&self) -> LayoutType {
+    LayoutType::Unknown
+  }
+
+  /// The only layout that performs any actions in this method is the TabLayout
+  fn set_active_tab_by_uuid(&mut self, tab_uuid: Uuid) {}
+
+  /// Sets the fill algorithm
+  fn set_fill(&mut self, algorithm: Box<LayoutFill>) {}
+
+  /// Sets the layout's maximum size
+  fn set_max_size(&mut self, width: f64, height: f64) {}
+
+  /// LayoutBase pass-through functions
+
+  fn get_uuid(&self) -> Uuid {
+    self.layout_base.get_uuid()
+  }
+  fn set_uuid(&mut self, uuid: Uuid) {
+    self.layout_base.set_uuid(uuid);
+  }
+
+  fn get_event_loop(&self) -> Rc<EventLoopProxy<UserEvent>> {
+    self.layout_base.get_event_loop()
+  }
+  fn set_event_loop(&mut self, event_loop: Rc<EventLoopProxy<UserEvent>>) {
+    self.layout_base.set_event_loop(event_loop);
+  }
+
+  fn get_main_win_uuid(&self) -> Uuid {
+    self.layout_base.get_main_win_uuid()
+  }
+  fn set_main_win_uuid(&mut self, main_win_uuid: Uuid) {
+    self.layout_base.set_main_win_uuid(main_win_uuid);
+  }
+
+  fn get_pixmap(&self) -> Pixmap {
+    self.layout_base.get_pixmap()
+  }
+  fn set_pixmap(&mut self, pixmap: Pixmap) {
+    self.layout_base.set_pixmap(pixmap);
+  }
+
+  fn get_main_win_x(&self) -> f64 {
+    self.layout_base.get_main_win_x()
+  }
+  fn set_main_win_x(&mut self, main_win_x: f64) {
+    self.layout_base.set_main_win_x(main_win_x);
+  }
+
+  fn get_main_win_y(&self) -> f64 {
+    self.layout_base.get_main_win_y()
+  }
+  fn set_main_win_y(&mut self, main_win_y: f64) {
+    self.layout_base.set_main_win_y(main_win_y);
+  }
+
+  fn get_location(&self) -> (f64, f64) {
+    self.layout_base.get_location()
+  }
+
+  fn get_width(&self) -> f64 {
+    self.layout_base.get_width()
+  }
+  fn set_width(&mut self, width: f64) {
+    self.layout_base.set_width(width);
+  }
+
+  fn get_height(&self) -> f64 {
+    self.layout_base.get_height()
+  }
+  fn set_height(&mut self, height: f64) {
+    self.layout_base.set_height(height);
+  }
+
+  fn get_size(&self) -> (f64, f64) {
+    self.layout_base.get_size()
+  }
+
+  fn get_name(&self) -> String {
+    self.layout_base.get_name()
+  }
+  fn set_name(&mut self, name: String) {
+    self.layout_base.set_name(name);
+  }
+
+  fn layout(&mut self, main_win_x: f64, main_win_y: f64, width: f64, height: f64) -> Pixmap {
+    Pixmap::new(1, 1).unwrap();
+  }
+
+  fn update(&mut self) {
+    self.layout_base.update();
+  }
+}

@@ -1,0 +1,17 @@
+[package]
+name = "simple_window"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+fenetre = { path = "../.." }
+winit = "0.30.8"
+tiny-skia = "0.11.4"
+
+[dependencies.uuid]
+version = "1.16.0"
+features = [
+    "v4",                # Lets you generate random UUIDs
+    "fast-rng",          # Use a faster (but still sufficiently random) RNG
+    "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
+]
