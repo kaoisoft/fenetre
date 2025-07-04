@@ -1,20 +1,16 @@
 [package]
-name = "fenetre"
-version = "0.1.1"
+name = "image_viewer"
+version = "0.1.0"
 edition = "2021"
-license = "Apache-2.0"
-description = "Pure Rust-based GUI library"
 
 [dependencies]
-winit = "0.30.11"
-softbuffer = "0.4.6"
+fenetre = { path = "../.." }
+winit = "0.30.8"
 tiny-skia = "0.11.4"
-fontdue = "0.9.3"
-image = "0.25.6"
-chrono = "0.4.41"
+dirs = "6.0.0"
 
 [dependencies.uuid]
-version = "1.17.0"
+version = "1.16.0"
 features = [
     "v4",                # Lets you generate random UUIDs
     "fast-rng",          # Use a faster (but still sufficiently random) RNG

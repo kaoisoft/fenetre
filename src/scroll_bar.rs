@@ -21,7 +21,7 @@ use tiny_skia::{
 use crate::button::Button;
 use crate::ChildType;
 use crate::ChildWindow;
-use crate::child_window::{ContextMenuItem, Orientation};
+use crate::child_window::{ContextMenuItem, LayoutType, Orientation};
 use crate::context_menu::ContextMenu;
 use crate::UserEvent;
 use crate::window_base::WindowBase;
@@ -757,7 +757,26 @@ impl ChildWindow for ScrollBar {
   fn handle_mouse_movement(&mut self, _main_win_x: f64, _main_win_y: f64) {
   }
 
-  fn handle_mouse_wheel(&mut self, _delta: MouseScrollDelta, _phase: TouchPhase) {
+  fn handle_mouse_wheel(&mut self, delta: MouseScrollDelta, _phase: TouchPhase) {
+    match delta {
+      MouseScrollDelta::LineDelta(_, amount) => {
+
+        let new_value = self.value + (amount * -1.0) as f64;
+
+        // Call the callback
+        match &self.scrolling_callback {
+
+          Some(callback) => callback(self.orientation, new_value),
+          None => {},
+        }
+
+        // Save the new scroll value
+        self.set_value(new_value);
+      },
+      
+      MouseScrollDelta::PixelDelta(_) => {
+      },
+    }
   }
 
   fn populate_context_menu(&self, context_menu_rc: Rc<RefCell<ContextMenu>>) {

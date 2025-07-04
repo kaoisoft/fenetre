@@ -48,6 +48,11 @@ Demonstrates how to create an application with a main window.
 
 This example application is a simple text editor.
 
+### image_viewer
+
+Demonstrates displaying a scaled image image in a window as well as the full-sized version 
+of the same image in a pop-up window which is scrollable.
+
 ## Custom Windows and Layouts
 
 To assist in creating custom windows and layouts, two template files exist, 
