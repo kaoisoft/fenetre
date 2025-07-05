@@ -211,6 +211,9 @@ impl Table {
       None => {},
     }
 
+    // Calculate the maximum number of visible rows
+    let visible_row_count = height / self.char_height as f64;
+    
     // Calculate the padding that each column will receive
     let mut total_width: f64 = 0.0;
     for col_data in &self.columns {
@@ -300,7 +303,8 @@ impl Table {
           // Draw the cell data
           let mut row_index = self.window_base.get_y_scroll() as usize;
           let row_count = self.row_data.len();
-          while row_index < row_count {
+          let mut count = 0.0;
+          while row_index < row_count && count < visible_row_count {
 
             let row = self.row_data.get(row_index).unwrap();
 
@@ -334,6 +338,7 @@ impl Table {
             }
 
             row_index += 1;
+            count += 1.0;
           }
 
           col_index += 1;
